@@ -93,6 +93,7 @@ app.get('/api/verifyemail', async (req, res) =>
     
     if (req.query.id == result.rand)
     {
+      const verify = db.collection('Users').updateOne({Username:req.query.username}, {$set:{isVerified:1}});
       res.send('Your email has been verified. You can now log in.');
     }
     else
