@@ -36,8 +36,8 @@ app.post('/api/signup', async (req, res) =>
   {
     const db = client.db();
     
-    ret1 = await db.collection('Users').findOne({Username:username}).toArray();
-    ret2 = await db.collection('Users').findOne({Email:email}).toArray();
+    ret1 = await db.collection('Users').findOne({Username:username});
+    ret2 = await db.collection('Users').findOne({Email:email});
   }
   catch(e)
   {
