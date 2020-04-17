@@ -203,12 +203,12 @@ app.post('/api/deletepost', authenticateJWT, async (req, res) =>
 {
   var error = '';
   
-  const {postID} = req.body;
+  const {description} = req.body;
   
   try
   {
   const db = client.db();
-  const result = db.collection('Posts').deleteOne({_id:'ObjectId('+postID+')'});
+  const result = db.collection('Posts').deleteOne({Description:description});
   }
   catch(e)
   {
