@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) =>
 {
   res.send('Yay! Server is working.');
-}
+});
 
 app.post('/api/signup', async (req, res) =>
 {
