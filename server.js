@@ -21,5 +21,25 @@ app.use(bodyParser.json());
 
 app.post('/api/signup', async (req, res) =>
 {
-
+  var error = '';
+  var ret1, ret2;
+  
+  const {username, email, password} = req.body;
+  const newUser = {Username:username, Email:email, Password:password};
+  
+  try
+  {
+    const db = client.db();
+    
+    ret1 = await db.collection('Users').find({Username:username}).toArray();
+    ret2 = await db.collection('Users').find({Email:email}).toArray();
+  }
+  catch(e)
+  {
+    error = e.toString();
+  }
+  
+  res.status(200).json({ret1:ret1, ret2:ret2});
 });
+
+app.listen(process.env.PORT);
