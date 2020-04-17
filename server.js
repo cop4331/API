@@ -28,9 +28,10 @@ app.post('/api/signup', async (req, res) =>
 {
   var error = '';
   var ret1, ret2;
+  var rand = Math.floor((Math.random() * 100) + 54);
   
   const {username, email, password} = req.body;
-  const newUser = {Username:username, Email:email, Password:password};
+  const newUser = {Username:username, Email:email, Password:password, isVerified:0, rand:rand};
   
   try
   {
@@ -47,6 +48,26 @@ app.post('/api/signup', async (req, res) =>
     {
       res.status(403).json({Error:'Email address already exists.'});
     }
+    
+    const result = db.collection('Users').insertOne(newUser);
+    
+    var transporter = nodemailer.createTransport(
+    {
+      service: "gmail",
+      auth: {"mygymproapp@gmail.com", pass: "Exceptions123?"}
+    });
+    
+    var link = "http://my-gym-pro.herokuapp.com/api/verifyemail/?id=" + rand + "&username=" + username;
+    
+    mailOptions = 
+    {
+      from: "mygymproapp@gmail.com",
+      to: email.toString(),
+      subject: "Please confirm your MyGymPro account.",
+      html: "<br>Click the link to verify your email.<br><a href=" + link + ">CLICK HERE</a>
+    }
+    
+    transporter.sendMail(mailOptions);
   }
   catch(e)
   {
@@ -55,7 +76,7 @@ app.post('/api/signup', async (req, res) =>
   
   if (!res.headersSent)
   {
-    res.status(200).json({Error:error, ret1:ret1, ret2:ret2});
+    res.status(200).json({Error:error});
   }
 });
 
