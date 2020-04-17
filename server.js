@@ -82,4 +82,33 @@ app.post('/api/signup', async (req, res) =>
   }
 });
 
+app.get('/api/verifyemail', async (req, res) =>
+{
+  var error = '';
+  
+  try
+  {
+    const db = client.db();
+    const result = await db.collection('Users').findOne({Username:req.query.username});
+    
+    if (req.query.id == result.rand)
+    {
+      res.send('Your email has been verified. You can now log in.');
+    }
+    else
+    {
+      res.send('Email could not be verified.');
+    }
+  }
+  catch(e)
+  {
+    error = e.toString();
+  }
+  
+  if (!res.headersSent)
+  {
+    res.status(200).json({Error:error});
+  }
+});
+
 app.listen(process.env.PORT);
