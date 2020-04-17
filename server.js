@@ -55,7 +55,7 @@ app.post('/api/signup', async (req, res) =>
       var transporter = nodemailer.createTransport(
       {
         service: "gmail",
-        auth: {"mygymproapp@gmail.com", pass: "Exceptions123?"}
+        auth: {user: "mygymproapp@gmail.com", pass: "Exceptions123?"}
       });
     
       var link = "http://my-gym-pro.herokuapp.com/api/verifyemail/?id=" + rand + "&username=" + username;
