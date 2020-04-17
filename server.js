@@ -24,6 +24,32 @@ app.get('/', (req, res) =>
   res.send('Yay! Server is working.');
 });
 
+const authenticateJWT = (req, res, next) =>
+{
+  const authHeader = req.headers.authorization;
+  
+  if (authHeader)
+  {
+    const token = authHeader.split(' ')[1];
+    
+    jwt.verify(token, 'supersecretkey', (err) =>
+    {
+      if (err)
+      {
+        res.status(403).json({Error:'Could not authenticate.'});
+      }
+      else
+      {
+        next();
+      }
+    });
+  }
+  else
+  {
+    res.status(401).json({Error:'Unauthorized.'});
+  }
+};
+
 app.post('/api/signup', async (req, res) =>
 {
   var error = '';
