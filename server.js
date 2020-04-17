@@ -42,10 +42,12 @@ app.post('/api/signup', async (req, res) =>
     if (ret1 != null)
     {
       res.status(403).json({Error:'Username already exists.'});
+      process.exit();
     }
     if (ret2 != null)
     {
       res.status(403).json({Error:'Email address already exists.'});
+      process.exit();
     }
   }
   catch(e)
