@@ -121,7 +121,7 @@ app.post('/api/login', async (req, res) =>
   try
   {
     const db = client.db();
-    const result = await db.collection.findOne({Username:username});
+    const result = await db.collection('Users').findOne({Username:username});
     
     if (result == null)
     {
