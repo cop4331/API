@@ -112,4 +112,44 @@ app.get('/api/verifyemail', async (req, res) =>
   }
 });
 
+app.post('/api/login', async (req, res) =>
+{
+  var error = '';
+  
+  const {username, password} = req.body;
+  
+  try
+  {
+    const db = client.db();
+    const result = await db.collection.findOne({Username:username});
+    
+    if (result == null)
+    {
+      res.status(403).json({Error:'Username does not exist.'});
+    }
+    else if (result.isVerified == 0)
+    {
+      res.status(403).json({Error:'Email has not been verified.'});
+    }
+    else if (password != result.Password)
+    {
+      res.status(403).json({Error:'Incorrect password.'});
+    }
+    else
+    {
+      const accessToken = jwt.sign({username:username}, 'supersecretkey');
+      res.status(200).json({AccessToken:accessToken, id:result._id});
+    }
+  }
+  catch(e)
+  {
+    error = e.toString();
+  }
+  
+  if (!res.headersSent)
+  {
+    res.status(200).json({Error:error});
+  }
+});
+
 app.listen(process.env.PORT);
