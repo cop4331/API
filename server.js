@@ -65,7 +65,7 @@ app.post('/api/signup', async (req, res) =>
         from: "mygymproapp@gmail.com",
         to: email.toString(),
         subject: "Please confirm your MyGymPro account.",
-        html: "<br>Click the link to verify your email.<br><a href=" + link + ">CLICK HERE</a>
+        html: "<br>Click the link to verify your email.<br><a href=" + link + ">CLICK HERE</a>"
       }
     
       transporter.sendMail(mailOptions);
