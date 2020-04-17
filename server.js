@@ -42,12 +42,10 @@ app.post('/api/signup', async (req, res) =>
     if (ret1 != null)
     {
       res.status(403).json({Error:'Username already exists.'});
-      process.exit();
     }
     if (ret2 != null)
     {
       res.status(403).json({Error:'Email address already exists.'});
-      process.exit();
     }
   }
   catch(e)
@@ -55,7 +53,10 @@ app.post('/api/signup', async (req, res) =>
     error = e.toString();
   }
   
-  res.status(200).json({ret1:ret1, ret2:ret2});
+  if (!res.headersSent)
+  {
+    res.status(200).json({Error:error, ret1:ret1, ret2:ret2});
+  }
 });
 
 app.listen(process.env.PORT);
