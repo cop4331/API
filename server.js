@@ -208,7 +208,7 @@ app.post('/api/deletepost', authenticateJWT, async (req, res) =>
   try
   {
   const db = client.db();
-  const result = db.collection('Posts').deleteOne({_id:ObjectId(postID)});
+  const result = db.collection('Posts').deleteOne({_id:postID});
   }
   catch(e)
   {
