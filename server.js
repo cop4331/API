@@ -38,6 +38,15 @@ app.post('/api/signup', async (req, res) =>
     
     ret1 = await db.collection('Users').findOne({Username:username});
     ret2 = await db.collection('Users').findOne({Email:email});
+    
+    if (ret1 != null)
+    {
+      res.status(403).json({Error:'Username already exists.'});
+    }
+    if (ret2 != null)
+    {
+      res.status(403).json({Error:'Email address already exists.'});
+    }
   }
   catch(e)
   {
