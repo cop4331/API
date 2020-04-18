@@ -351,7 +351,7 @@ app.post('/api/getrecentstepdata', authenticateJWT, async (req, res) =>
   try
   {
     const db = client.db();
-    result = await db.collection('Steps').find().sort({Counter:-1}).limit(1).toArray();
+    result = await db.collection('Steps').find({UserID:userID}).sort({Counter:-1}).limit(1).toArray();
   }
   catch(e)
   {
