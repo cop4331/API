@@ -19,6 +19,8 @@ client.connect();
 
 app.use(bodyParser.json());
 
+var counter = 1;
+
 app.get('/', (req, res) =>
 {
   res.send('Yay! Server is working.');
@@ -302,12 +304,13 @@ app.post('/api/poststepdata', authenticateJWT, async (req, res) =>
 	
   const {userID, date, numSteps, distanceTraveled, caloriesBurned, dailyGoal} = req.body;
   
-  const stepData = {UserID:userID, Date:date, Steps:numSteps, Distance:distanceTraveled, Calories:caloriesBurned, Goal:dailyGoal};
+  const stepData = {UserID:userID, Date:date, Counter:counter, Steps:numSteps, Distance:distanceTraveled, Calories:caloriesBurned, Goal:dailyGoal};
   
   try
   {
   const db = client.db();
   const result = db.collection('Steps').insertOne(stepData);
+  counter++;
   }
   catch(e)
   {
@@ -317,7 +320,7 @@ app.post('/api/poststepdata', authenticateJWT, async (req, res) =>
   res.status(200).json({Error:error});
 });
 
-app.post('/api/getstepdata', authenticateJWT, async (req, res) =>
+app.post('/api/getallstepdata', authenticateJWT, async (req, res) =>
 {
   var error = '';
   var ret = {};
@@ -338,84 +341,25 @@ app.post('/api/getstepdata', authenticateJWT, async (req, res) =>
   res.status(200).json({StepData:ret, Error:error});
 });
 
-app.post('/api/getalltemplates', authenticateJWT, async (req, res) =>
+app.post('/api/getrecentstepdata', authenticateJWT, async (req, res) =>
 {
   var error = '';
   var ret = {};
-	
-  try
-  {
-  const db = client.db();
-  const results = await db.collection('Templates').find({}).toArray();
-  ret = JSON.stringify(results);
-  }
-  catch(e)
-  {
-    error = e.toString();
-  }
   
-  res.status(200).json({Templates:ret, Error:error});
-});
-
-app.post('/api/createcustomworkout', authenticateJWT, async (req, res) =>
-{
-  var error = '';	
-	
-  const {userID, customWorkout} = req.body;
-  
-  const newWorkout = {UserID:userID, Workout:customWorkout}
-  
-  try
-  {
-  const db = client.db();
-  const result = db.collection('CustomWorkouts').insertOne(newWorkout);
-  }
-  catch(e)
-  {
-    error = e.toString();
-  }
-  
-  res.status(200).json({Error:error});
-});
-
-app.post('/api/deletecustomworkout', authenticateJWT, async (req, res) =>
-{
-  var error = '';	
-	
-  const {workout} = req.body;
-  
-  try
-  {
-  const db = client.db();
-  const result = db.collection('CustomWorkouts').deleteOne({Workout:workout});
-  }
-  catch(e)
-  {
-    error = e.toString();
-  }
-  
-  res.status(200).json({Error:error});
-});
-
-app.post('/api/getallcustomworkouts', authenticateJWT, async (req, res) =>
-{
-  var error = '';
-  var ret = {};
-	
   const {userID} = req.body;
-  
+
   try
   {
-  const db = client.db();
-  const results = await db.collection('CustomWorkouts').find({UserID:userID}).toArray();
-  ret = JSON.stringify(results);
+    const db = client.db();
+    const result = await db.collection('Steps').find().sort({Counter:-1}).limit(1);
+    ret = JSON.stringify(result);
   }
   catch(e)
   {
     error = e.toString();
   }
-  
-  res.status(200).json({Workouts:ret, Error:error});
+	
+  res.status(200).json({StepData:ret, Error:error});
 });
 
 app.listen(process.env.PORT);
