@@ -344,22 +344,21 @@ app.post('/api/getallstepdata', authenticateJWT, async (req, res) =>
 app.post('/api/getrecentstepdata', authenticateJWT, async (req, res) =>
 {
   var error = '';
-  var ret = {};
+  var result;
   
   const {userID} = req.body;
 
   try
   {
     const db = client.db();
-    const result = await db.collection('Steps').find().sort({Counter:-1}).limit(1);
-    ret = JSON.stringify(result);
+    result = await db.collection('Steps').find().sort({Counter:-1}).limit(1);
   }
   catch(e)
   {
     error = e.toString();
   }
 	
-  res.status(200).json({StepData:ret, Error:error});
+  res.status(200).json({StepData:result, Error:error});
 });
 
 app.listen(process.env.PORT);
