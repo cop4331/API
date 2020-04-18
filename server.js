@@ -4,8 +4,6 @@ var bodyParser = require('body-parser');
 
 var MongoClient = require('mongodb').MongoClient;
 
-var util = require('util');
-
 var bcrypt = require('bcrypt');
 
 var nodemailer = require('nodemailer');
@@ -353,8 +351,7 @@ app.post('/api/getrecentstepdata', authenticateJWT, async (req, res) =>
   try
   {
     const db = client.db();
-    result = await db.collection('Steps').find().sort({Counter:-1}).limit(1);
-    util.inspect(result);
+    result = await db.collection('Steps').find().sort({Counter:-1}).limit(1).toArray();
   }
   catch(e)
   {
