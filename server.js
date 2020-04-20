@@ -250,7 +250,7 @@ app.get('/api/getallposts', async (req, res) =>
     error = e.toString();
   }
   
-  res.status(200).json({Posts:ret, Error:error});
+  res.status(200).json({Posts:ret});
 });
 
 app.post('/api/createreply', authenticateJWT, async (req, res) =>
