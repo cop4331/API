@@ -55,3 +55,51 @@
  *              schema:
  *                $ref: '#/components/schemas/LoginSuccess'
  */
+
+/**
+ * @swagger
+ * path:
+ *  /createpost:
+ *    post:
+ *      security:
+ *        - bearerAuth: []
+ *      summary: Create a new post.
+ *      tags: [Posts]
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Post'
+ *      responses:
+ *        "200":
+ *          description: An error message.
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Error'
+ */
+
+/**
+ * @swagger
+ * path:
+ *  /getallposts:
+ *    post:
+ *      security: 
+ *         - bearerAuth: []
+ *      summary: Get all posts from the database. You do not need to send any JSON. It will be ignored.
+ *      tags: [Posts]
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Post'
+ *      responses:
+ *        "200":
+ *          description: An array of posts.
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Post'
+ */
