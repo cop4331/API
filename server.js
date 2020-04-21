@@ -219,25 +219,6 @@ app.post('/api/createpost', authenticateJWT, async (req, res) =>
   res.status(200).json({Error:error});
 });
 
-app.post('/api/deletepost', authenticateJWT, async (req, res) =>
-{
-  var error = '';
-  
-  const {description} = req.body;
-  
-  try
-  {
-  const db = client.db();
-  const result = db.collection('Posts').deleteOne({Description:description});
-  }
-  catch(e)
-  {
-    error = e.toString();
-  }
-  
-  res.status(200).json({Error:error});
-});
-
 app.get('/api/getallposts', async (req, res) =>
 {
   var error = '';
@@ -255,65 +236,6 @@ app.get('/api/getallposts', async (req, res) =>
   }
   
   res.status(200).json({Posts:ret});
-});
-
-app.post('/api/createreply', authenticateJWT, async (req, res) =>
-{
-  var error = '';
-  
-  const {postID, userID, description, date} = req.body;
-  
-  const newReply = {PostID:postID, UserID:userID, Description:description, Date:date};
-  
-  try
-  {
-  const db = client.db();
-  const result = db.collection('Replies').insertOne(newReply);
-  }
-  catch(e)
-  {
-    error = e.toString();
-  }
-	
-  res.status(200).json({Error:error});
-});
-
-app.post('/api/deletereply', authenticateJWT, async (req, res) =>
-{
-  var error = '';	
-	
-  const {description} = req.body;
-  
-  try
-  {
-  const db = client.db();
-  const result = db.collection('Replies').deleteOne({Description:description});
-  }
-  catch(e)
-  {
-    error = e.toString();
-  }
-  
-  res.status(200).json({Error:error});
-});
-
-app.post('/api/getallreplies', authenticateJWT, async (req, res) =>
-{
-  var error = '';
-  var ret = {};
-	
-  try
-  {
-  const db = client.db();
-  const results = await db.collection('Replies').find({}).toArray();
-  ret = JSON.stringify(results);
-  }
-  catch(e)
-  {
-    error = e.toString();
-  }
-  
-  res.status(200).json({Replies:ret, Error:error});
 });
 
 app.post('/api/poststepdata', authenticateJWT, async (req, res) =>
