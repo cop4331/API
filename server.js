@@ -328,8 +328,8 @@ const options = {
   apis: []
 };
 const specs = swaggerJsdoc(options);
-router.use("/api/docs", swaggerUi.serve);
-router.get(
+app.use("/api/docs", swaggerUi.serve);
+app.get(
   "/docs",
   swaggerUi.setup(specs, {
     explorer: true
