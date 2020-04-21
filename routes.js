@@ -8,7 +8,7 @@
 /**
  * @swagger
  * path:
- *  /api/signup:
+ *  /signup:
  *    post:
  *      summary: Create a new user.
  *      tags: [Users]
