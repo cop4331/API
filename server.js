@@ -202,9 +202,9 @@ app.post('/api/createpost', authenticateJWT, async (req, res) =>
 {
   var error = '';
   
-  const {userID, title, description, date} = req.body;
+  const {username, text} = req.body;
   
-  const newPost = {UserID:userID, Title:title, Description:description, Date:date};
+  const newPost = {Username:username, Text:text};
   
   try
   {
