@@ -112,14 +112,14 @@
  *    post:
  *      security:
  *        - bearerAuth: []
- *      summary: Create a new StepData document in the database.
+ *      summary: Get all the step history corresponding to a user.
  *      tags: [Steps]
  *      requestBody:
  *        required: true
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/StepData'
+ *              $ref: '#/components/schemas/UserID'
  *      responses:
  *        "200":
  *          description: Returns all the step data corresponding to the user.
@@ -136,7 +136,31 @@
  *    post:
  *      security:
  *        - bearerAuth: []
- *      summary: Create a new StepData document in the database.
+ *      summary: Get the most recently-submitted step data document corresponding to the user.
+ *      tags: [Steps]
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/UserID'
+ *      responses:
+ *        "200":
+ *          description: Returns the most recently-submitted step data corresponding to the user.
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/StepData'
+ */
+
+/**
+ * @swagger
+ * path:
+ *  /poststepdata:
+ *    post:
+ *      security:
+ *        - bearerAuth: []
+ *      summary: Post a StepData document to the database.
  *      tags: [Steps]
  *      requestBody:
  *        required: true
@@ -146,9 +170,9 @@
  *              $ref: '#/components/schemas/StepData'
  *      responses:
  *        "200":
- *          description: Returns all the step data corresponding to the user.
+ *          description: Returns an error message.
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/StepData'
+ *                $ref: '#/components/schemas/Error'
  */
