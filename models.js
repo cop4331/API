@@ -121,6 +121,22 @@
 /**
  * @swagger
  *  components:
+ *    schemas:
+ *      UserID:
+ *        type: object
+ *        required:
+ *          - id
+ *        properties:
+ *          id:
+ *            type: string
+ *            description: Represents the MongoDB ObjectID for the user.
+ *        example:
+ *          userID: "5e9a23090243dc0017ce4284"
+ */
+
+/**
+ * @swagger
+ *  components:
  *    securitySchemes:
  *      bearerAuth:
  *        type: http
