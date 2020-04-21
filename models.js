@@ -72,8 +72,12 @@
  *          dailyGoal:
  *            type: number
  *        example:
- *          username: thebestusernameever
- *          text: I love this app so much! It's so useful!
+ *          userID: "5e9a23090243dc0017ce4284"
+ *          date: 4/21/2020
+ *          numSteps: 7500
+ *          distanceTraveled: 4.5
+ *          caloriesBurned: 650
+ *          dailyGoal: 10000
  */
 
 /**
@@ -114,7 +118,7 @@
  *             description: An error message. If no errors, returns empty.
  *        example:
  *          id: "5e9a23090243dc0017ce4284"
- *          accessToken: xxxxx.yyyyy.zzzzz
+ *          accessToken: "xxxxx.yyyyy.zzzzz"
  *          error: ""
  */
 
