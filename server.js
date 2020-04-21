@@ -321,7 +321,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://my-gym-pro.herokuapp.com/api"
+        url: "https://my-gym-pro.herokuapp.com/api"
       }
     ]
   },
