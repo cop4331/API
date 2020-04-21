@@ -30,18 +30,18 @@
  *      Post:
  *        type: object
  *        required:
- *          - username
- *          - text
+ *          - userID
+ *          - description
  *        properties:
- *          username:
+ *          userID:
  *            type: string
  *            description: The user who created the post.
- *          text:
+ *          description:
  *            type: string
  *            description: The content of the post.
  *        example:
- *          username: thebestusernameever
- *          text: I love this app so much! It's so useful!
+ *          userID: thebestusernameever
+ *          description: I love this app so much! It's so useful!
  */
 
 /**
