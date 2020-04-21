@@ -14,6 +14,13 @@
 
 /**
  * @swagger
+ * tags:
+ *   name: Steps
+ *   description: Get step history or the most recent step data, or post step data to the database.
+ */
+
+/**
+ * @swagger
  * path:
  *  /signup:
  *    post:
@@ -96,4 +103,52 @@
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/Post'
+ */
+
+/**
+ * @swagger
+ * path:
+ *  /getstepdata:
+ *    post:
+ *      security:
+ *        - bearerAuth: []
+ *      summary: Create a new StepData document in the database.
+ *      tags: [Steps]
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/StepData'
+ *      responses:
+ *        "200":
+ *          description: Returns all the step data corresponding to the user.
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/StepData'
+ */
+
+/**
+ * @swagger
+ * path:
+ *  /getrecentstepdata:
+ *    post:
+ *      security:
+ *        - bearerAuth: []
+ *      summary: Create a new StepData document in the database.
+ *      tags: [Steps]
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/StepData'
+ *      responses:
+ *        "200":
+ *          description: Returns all the step data corresponding to the user.
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/StepData'
  */
