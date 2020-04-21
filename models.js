@@ -91,3 +91,29 @@
  *        example:
  *          Error: Unauthorized.
  */
+
+/**
+ * @swagger
+ *  components:
+ *    schemas:
+ *      LoginSuccess:
+ *        type: object
+ *        required:
+ *          - id
+ *          - accessToken
+ *          - error
+ *        properties:
+ *          id:
+ *            type: string
+ *            description: Represents the MongoDB ObjectID for the user.
+ *          accessToken:
+ *            type: string
+ *            description: Required for the user to access every endpoint, besides signup and login.
+ *          error:
+ *             type: string
+ *             description: An error message. If no errors, returns empty.
+ *        example:
+ *          id: "5e9a23090243dc0017ce4284"
+ *          accessToken: xxxxx.yyyyy.zzzzz
+ *          error: ""
+ */
