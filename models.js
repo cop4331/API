@@ -119,6 +119,7 @@
  */
 
 /**
+ * @swagger
  *  components:
  *    securitySchemes:
  *      bearerAuth:
