@@ -7,6 +7,13 @@
 
 /**
  * @swagger
+ * tags:
+ *   name: Posts
+ *   description: Create a post and get all posts from the database.
+ */
+
+/**
+ * @swagger
  * path:
  *  /signup:
  *    post:
@@ -47,4 +54,55 @@
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/LoginSuccess'
+ */
+
+/**
+ * @swagger
+ * path:
+ *  /createpost:
+ *    post:
+ *      summary: Create a new post.
+ *      paramaters:
+          - in: header
+          name: authorization
+          schema:
+            type: string
+            format: uuid
+          required: true
+ *      tags: [Posts]
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Post'
+ *      responses:
+ *        "200":
+ *          description: An error message.
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Error'
+ */
+
+/**
+ * @swagger
+ * path:
+ *  /getallposts:
+ *    post:
+ *      summary: Get all posts. You do not have to send any JSON for this endpoint. It will be ignored.
+ *      tags: [Posts]
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Posts'
+ *      responses:
+ *        "200":
+ *          description: An error message.
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Post'
  */
