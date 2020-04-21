@@ -108,7 +108,7 @@
 /**
  * @swagger
  * path:
- *  /getstepdata:
+ *  /getallstepdata:
  *    post:
  *      security:
  *        - bearerAuth: []
