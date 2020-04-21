@@ -10,6 +10,10 @@ var nodemailer = require('nodemailer');
 
 var jwt = require('jsonwebtoken');
 
+var swaggerJsdoc = require('swagger-jsdoc');
+
+var swaggerUi = require ('swagger-ui-express');
+
 var app = express();
 
 var conn = 'mongodb+srv://mainaccess:securepassword@cop4331-large-project-l2dqk.mongodb.net/MyGymPro?retryWrites=true&w=majority';
