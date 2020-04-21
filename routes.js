@@ -20,9 +20,9 @@
  *              $ref: '#/components/schemas/User'
  *      responses:
  *        "200":
- *          description: An error message
+ *          description: An error message.
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/User'
+ *                $ref: '#/components/schemas/Error'
  */
