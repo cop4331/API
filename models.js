@@ -20,5 +20,18 @@
  *          username: thebestusernameever
  *          email: thebestemailever@mail.com
  *          password: thebestpasswordever
+ *       Post:
+ *         type: object
+ *         required:
+ *           - username
+ *           - description
+ *         properties:
+ *           username:
+ *             type: string
+ *           text:
+ *             type: string
+ *           example:
+ *             username: thebestusernameever
+ *             text: I love this app so much! It's so useful!
  *           
  */
