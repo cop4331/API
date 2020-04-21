@@ -330,7 +330,7 @@ const options = {
 const specs = swaggerJsdoc(options);
 app.use("/api/docs", swaggerUi.serve);
 app.get(
-  "/docs",
+  "/api/docs",
   swaggerUi.setup(specs, {
     explorer: true
   })
