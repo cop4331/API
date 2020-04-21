@@ -64,13 +64,13 @@
  *          date:
  *            type: string
  *          numSteps:
- *            type: string
+ *            type: number
  *          distanceTraveled:
- *            type: string
+ *            type: number
  *          caloriesBurned:
- *            type: string
+ *            type: number
  *          dailyGoal:
- *            type: string
+ *            type: number
  *        example:
  *          username: thebestusernameever
  *          text: I love this app so much! It's so useful!
