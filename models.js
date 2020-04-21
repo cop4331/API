@@ -75,3 +75,19 @@
  *          username: thebestusernameever
  *          text: I love this app so much! It's so useful!
  */
+
+/**
+ * @swagger
+ *  components:
+ *    schemas:
+ *      Error:
+ *        type: object
+ *        required:
+ *          - error
+ *        properties:
+ *          error:
+ *            type: string
+ *            description: An error message. If no error, string will be empty.
+ *        example:
+ *          Error: Unauthorized.
+ */
