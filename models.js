@@ -117,3 +117,12 @@
  *          accessToken: xxxxx.yyyyy.zzzzz
  *          error: ""
  */
+
+/**
+ *  components:
+ *    securitySchemes:
+ *      bearerAuth:
+ *        type: http
+ *        scheme: bearer
+ *        bearerFormat: JWT
+ */
